@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign-In Success</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sign-In Success</h1>
+      <p id="email"></p>
+      <p id="success-message">You have been successfully signed in!</p>
+    </div>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const email = urlParams.get('email');
+      document.getElementById('email').textContent = `Email: ${decodeURIComponent(email)}`;
+    </script>
+  </body>
+</html>

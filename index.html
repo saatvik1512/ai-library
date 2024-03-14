@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Sign In</h1>
+  <form action="process_signin.php" method="post" onsubmit="return validateForm()">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required><br><br>
+    <span id="usernameError" class="error"></span>  <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required><br><br>
+    <span id="emailError" class="error"></span>  <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required><br><br>
+    <span id="passwordError" class="error"></span>  <button type="submit">Sign In</button>
+  </form>
+  <p>Don't have an account? <a href="signup.php">Sign Up</a></p>
+
+  <script>
+    function validateForm() {
+      let isValid = true; // Flag to track validation status
+
+      // Username validation
+      const username = document.getElementById('username').value.trim();
+      const usernameError = document.getElementById('usernameError');
+      if (username === '') {
+        usernameError.textContent = 'Username cannot be empty.';
+        isValid = false;
+      } else {
+        usernameError.textContent = ''; // Clear previous error message
+      }
+
+      // Email validation
+      const email = document.getElementById('email').value.trim();
+      const emailError = document.getElementById('emailError');
+      const emailRegex = /^([^\s@]+@[^\s@]+\.[^\s@]+)$/; // Regular expression for email format
+      if (!emailRegex.test(email)) {
+        emailError.textContent = 'Invalid email format.';
+        isValid = false;
+      } else {
+        emailError.textContent = ''; // Clear previous error message
+      }
+
+      // Password validation (add complexity requirements as needed)
+      const password = document.getElementById('password').value.trim();
+      const passwordError = document.getElementById('passwordError');
+      if (password.length < 6) {
+        passwordError.textContent = 'Password must be at least 6 characters long.';
+        isValid = false;
+      } else {
+        passwordError.textContent = ''; // Clear previous error message
+      }
+
+      return isValid; // Return true if all fields are valid, false otherwise
+    }
+  </script>
+</body>
+</html>
